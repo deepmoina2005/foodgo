@@ -14,6 +14,7 @@ export const store = configureStore({
     vendor: vendorReducer,
     admin: adminReducer,
     delivery: deliveryReducer,
+    
   },
 });
 

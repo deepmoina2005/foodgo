@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DashboardLayout, SiteLayout, AuthLayout } from '../components/layout';
+import { DashboardLayout, AuthLayout } from '../components/layout';
 import { ProtectedRoute } from './ProtectedRoute';
 import { RoleRoute } from './RoleRoute';
 import {
