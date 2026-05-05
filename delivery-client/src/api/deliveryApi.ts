@@ -1,0 +1,40 @@
+import { axiosInstance } from "./axiosInstance";
+
+export const deliveryApi = {
+  profile: () => axiosInstance.get("/delivery/profile"),
+  updateProfile: (payload: FormData | Record<string, unknown>) =>
+    axiosInstance.put("/delivery/profile", payload, {
+      headers:
+        payload instanceof FormData
+          ? { "Content-Type": "multipart/form-data" }
+          : undefined,
+    }),
+  updateAvailability: (payload: { is_available: boolean }) =>
+    axiosInstance.patch("/delivery/profile/availability", payload),
+  uploadKyc: (payload: FormData) =>
+    axiosInstance.post("/delivery/kyc", payload, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
+  availableRequests: () => axiosInstance.get("/delivery/available-requests"),
+  availableRequest: (id: number | string) =>
+    axiosInstance.get(`/delivery/available-requests/${id}`),
+  acceptAvailableRequest: (id: number | string) =>
+    axiosInstance.post(`/delivery/available-requests/${id}/accept`),
+  orders: () => axiosInstance.get("/delivery/orders"),
+  order: (id: number | string) => axiosInstance.get(`/delivery/orders/${id}`),
+  acceptOrder: (id: number | string) =>
+    axiosInstance.post(`/delivery/orders/${id}/accept`),
+  pickupOrder: (id: number | string) =>
+    axiosInstance.patch(`/delivery/orders/${id}/pickup`),
+  updateStatus: (id: number | string, payload: unknown) =>
+    axiosInstance.patch(`/delivery/orders/${id}/status`, payload),
+  deliveredOrder: (id: number | string) =>
+    axiosInstance.patch(`/delivery/orders/${id}/delivered`),
+  history: () => axiosInstance.get("/delivery/history"),
+  earnings: () => axiosInstance.get("/delivery/earnings"),
+  ratings: () => axiosInstance.get("/delivery/ratings"),
+  notifications: () => axiosInstance.get("/notifications"),
+  readNotification: (id: number | string) =>
+    axiosInstance.patch(`/notifications/${id}/read`),
+  readAllNotifications: () => axiosInstance.patch("/notifications/read-all"),
+};
